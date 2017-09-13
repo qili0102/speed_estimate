@@ -40,9 +40,11 @@ def get_distance(point1, point2):
 #IOU matching
 #return two center points of the bbox
 def iou_matching(box, box_list):
-    iou_p = 0
+    iou_p = -1
     boxes_d = None
     for box_p in box_list:
+        if (abs(box[0]-box_p[0]) > box[2]) or (abs(box[1]-box_p[1]) > box[3]):
+            continue
         xA = max(box[0], box_p[0])
         yA = max(box[1], box_p[1])
         xB = min(box[0] + box[2], box_p[0] + box_p[2])
